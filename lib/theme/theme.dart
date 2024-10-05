@@ -3,6 +3,25 @@ import 'package:islamy_app/theme/color.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
+      dividerTheme: DividerThemeData(
+        thickness: 3,
+        color: AppColor.mainLightColor,
+      ),
+      colorScheme: ColorScheme(
+          brightness: Brightness.light,
+          primary: AppColor.mainLightColor,
+          onPrimary: Colors.white,
+          secondary: Colors.black,
+          onSecondary: Colors.white,
+          error: Colors.red,
+          onError: Colors.white,
+          surface: Colors.white,
+          onSurface: Colors.white),
+      textTheme: TextTheme(
+          titleMedium: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w400,
+              color: AppColor.black)),
       canvasColor: AppColor.mainLightColor,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           type: BottomNavigationBarType.shifting,
@@ -18,6 +37,20 @@ class AppTheme {
       primaryColor: AppColor.mainLightColor,
       scaffoldBackgroundColor: Colors.transparent);
   static ThemeData darkTheme = ThemeData(
+      dividerTheme: DividerThemeData(color: AppColor.gold),
+      colorScheme: ColorScheme(
+          brightness: Brightness.dark,
+          primary: AppColor.mainDarkColor,
+          onPrimary: AppColor.mainDarkColor,
+          secondary: Colors.white,
+          onSecondary: Colors.white,
+          error: Colors.red,
+          onError: Colors.white,
+          surface: Colors.white,
+          onSurface: Colors.white),
+      textTheme: const TextTheme(
+          titleMedium: TextStyle(
+              fontSize: 25, fontWeight: FontWeight.w400, color: Colors.white)),
       canvasColor: AppColor.mainDarkColor,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           type: BottomNavigationBarType.shifting,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islamy_app/screens/bottom_navigator/tabs/quran_tab.dart';
 import 'package:islamy_app/theme/image.dart';
 
 // ignore: must_be_immutable
@@ -13,7 +14,7 @@ class Quraan extends StatefulWidget {
 
 class _QuraanState extends State<Quraan> {
   List suras = [
-    "الفاتحه",
+    "الفاتحة",
     "البقرة",
     "آل عمران",
     "النساء",
@@ -142,9 +143,31 @@ class _QuraanState extends State<Quraan> {
         Expanded(
           child: ListView.builder(
             itemBuilder: (context, index) {
-              return Text(
-                suras[index],
-                style: Theme.of(context).textTheme.titleMedium,
+              return InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(QuranTab.routeName,
+                      arguments: QuranModel(name: suras[index], index: index));
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * .02,
+                      vertical: MediaQuery.of(context).size.height * .01),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: ListTile(
+                      leading: Text(
+                        "${index + 1}",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      title: Text(
+                        "سورة ${suras[index]}",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                  ),
+                ),
               );
             },
             itemCount: suras.length,
@@ -159,4 +182,11 @@ class _QuraanState extends State<Quraan> {
     virses = data.split('\n');
     setState(() {});
   }
+}
+
+class QuranModel {
+  String name;
+  int index;
+
+  QuranModel({required this.name, required this.index});
 }

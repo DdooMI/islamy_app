@@ -6,4 +6,5 @@ class AppImages {
   static String quranHeader = "assets/images/quran_header.png";
   static String sebhaIcn = "assets/images/sebha.png";
   static String radioIcn = "assets/images/radio.png";
+  static String star = "assets/images/star2.png";
 }

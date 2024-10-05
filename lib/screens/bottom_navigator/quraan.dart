@@ -129,57 +129,191 @@ class _QuraanState extends State<Quraan> {
     "الفلق",
     "الناس"
   ];
-
-  List<String> virses = [];
-
+  List suraType = [
+    "مكية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مكية",
+    "مكية",
+    "مدنية",
+    "مدنية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مدنية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مدنية",
+    "مكية",
+    "مدنية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مدنية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مدنية",
+    "مكية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مدنية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مدنية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مدنية",
+    "مدنية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مدنية",
+    "مكية",
+    "مكية",
+    "مكية",
+    "مكية"
+  ];
+  List<int> virsesCount = [];
   @override
   Widget build(BuildContext context) {
+    if (virsesCount.isEmpty) loadSuraCount();
     return Column(
       children: [
         Image.asset(
           AppImages.quranHeader,
           height: MediaQuery.of(context).size.height * 0.25,
         ),
-        Expanded(
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  Navigator.of(context).pushNamed(QuranTab.routeName,
-                      arguments: QuranModel(name: suras[index], index: index));
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * .02,
-                      vertical: MediaQuery.of(context).size.height * .01),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: ListTile(
-                      leading: Text(
-                        "${index + 1}",
-                        style: Theme.of(context).textTheme.titleMedium,
+        virsesCount.isEmpty
+            ? const Expanded(child: Center(child: CircularProgressIndicator()))
+            : Expanded(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(QuranTab.routeName,
+                            arguments:
+                                QuranModel(name: suras[index], index: index));
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: MediaQuery.of(context).size.width * .02,
+                            vertical: MediaQuery.of(context).size.height * .01),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: ListTile(
+                            leading: Text(
+                              "${index + 1}",
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            title: Text(
+                              "سورة ${suras[index]}",
+                              style: Theme.of(context).textTheme.titleMedium,
+                              textAlign: TextAlign.center,
+                            ),
+                            subtitle: Text(
+                              " عدد الآيات: ${virsesCount[index].toString()}",
+                              style: Theme.of(context).textTheme.bodyMedium,
+                              textAlign: TextAlign.center,
+                            ),
+                            trailing: Text(
+                              suraType[index],
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                          ),
+                        ),
                       ),
-                      title: Text(
-                        "سورة ${suras[index]}",
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    ),
-                  ),
+                    );
+                  },
+                  itemCount: suras.length,
                 ),
-              );
-            },
-            itemCount: suras.length,
-          ),
-        )
+              )
       ],
     );
   }
 
-  loadSuraContent(int index) async {
-    String data = await rootBundle.loadString('assets/quran/$index.txt');
-    virses = data.split('\n');
+  Future<void> loadSuraCount() async {
+    List<int> _virsesCount = [];
+    for (int i = 0; i < suras.length; i++) {
+      String data = await rootBundle.loadString('assets/quran/${i + 1}.txt');
+      List<String> content = data.trim().split('\n');
+      content.removeWhere((element) => element.isEmpty);
+      _virsesCount.add(content.length);
+    }
+    virsesCount = _virsesCount;
     setState(() {});
   }
 }

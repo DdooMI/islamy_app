@@ -18,6 +18,10 @@ class AppTheme {
           surface: Colors.white,
           onSurface: Colors.white),
       textTheme: TextTheme(
+          bodyMedium: TextStyle(
+              fontSize: 15, fontWeight: FontWeight.w400, color: AppColor.black),
+          titleSmall: TextStyle(
+              fontSize: 20, fontWeight: FontWeight.w400, color: AppColor.black),
           titleMedium: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w400,
@@ -49,7 +53,11 @@ class AppTheme {
           surface: Colors.white,
           onSurface: Colors.white),
       textTheme: const TextTheme(
-          titleMedium: TextStyle(
+          bodyMedium: TextStyle(
+              fontSize: 15, fontWeight: FontWeight.w400, color: Colors.white),
+          titleSmall: TextStyle(
+              fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white),
+          titleMedium: const TextStyle(
               fontSize: 25, fontWeight: FontWeight.w400, color: Colors.white)),
       canvasColor: AppColor.mainDarkColor,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(

@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       routes: {
         SplashScreen.routeName: (_) => const SplashScreen(),
         BottomNavigatorBar.routeName: (_) => const BottomNavigatorBar(),

@@ -27,7 +27,11 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(AppImages.background), fit: BoxFit.fill)),
+                image: AssetImage(
+                    Theme.of(context).colorScheme.brightness == Brightness.light
+                        ? AppImages.background
+                        : AppImages.backgroundDark),
+                fit: BoxFit.fill)),
         child: Scaffold(
           appBar: AppBar(
             title: const Text("islamy"),

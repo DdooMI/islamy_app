@@ -256,7 +256,10 @@ class _QuraanState extends State<Quraan> {
           height: MediaQuery.of(context).size.height * 0.25,
         ),
         virsesCount.isEmpty
-            ? const Expanded(child: Center(child: CircularProgressIndicator()))
+            ? Expanded(
+                child: Center(
+                    child: CircularProgressIndicator(
+                        color: Theme.of(context).colorScheme.onSurface)))
             : Expanded(
                 child: ListView.builder(
                   itemBuilder: (context, index) {

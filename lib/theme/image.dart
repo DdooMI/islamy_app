@@ -1,6 +1,9 @@
 class AppImages {
   static String splash = "assets/images/backgrounds/splash.png";
   static String background = "assets/images/backgrounds/bg.png";
+  static String backgroundDark = "assets/images/backgrounds/bgDark.png";
+  static String splashDark = "assets/images/backgrounds/splashDark.png";
+  static String hadethHeader = "assets/images/hadith_header.png";
   static String quran = "assets/images/quran2.png";
   static String quranIcn = "assets/images/quran_icn.png";
   static String quranHeader = "assets/images/quran_header.png";

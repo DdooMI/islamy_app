@@ -49,7 +49,7 @@ class AppTheme {
           secondary: Colors.white,
           onSecondary: AppColor.gold,
           error: Colors.red,
-          onError: Colors.white,
+          onError: Colors.black,
           surface: Color(0xFFBC9B15),
           onSurface: AppColor.gold),
       textTheme: const TextTheme(

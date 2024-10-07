@@ -11,4 +11,5 @@ class AppImages {
   static String radioIcn = "assets/images/radio.png";
   static String sebhaBody = "assets/images/sebha_body.png";
   static String sebhahead = "assets/images/sebha_head.png";
+  static String radio = "assets/images/radio_body.png";
 }

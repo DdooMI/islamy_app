@@ -19,7 +19,7 @@ class _SebhaState extends State<Sebha> {
   ];
   String sebhaName = "سبحان الله";
   int count = 0;
-
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -37,17 +37,19 @@ class _SebhaState extends State<Sebha> {
                     margin: const EdgeInsets.only(top: 36),
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: MediaQuery.of(context).size.height * 0.35,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(AppImages.sebhaBody))),
+                    child: Image.asset(
+                      AppImages.sebhaBody,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                   Container(
                     margin: const EdgeInsets.only(left: 40),
                     width: MediaQuery.of(context).size.width * 0.25,
                     height: MediaQuery.of(context).size.height * 0.12,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(AppImages.sebhahead))),
+                    child: Image.asset(
+                      AppImages.sebhahead,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                 ],
               ),
@@ -89,6 +91,15 @@ class _SebhaState extends State<Sebha> {
   changeSebha() {
     rotate += 1 / 33;
     count++;
+
+    if (count > 33) {
+      index++;
+      sebhaName = tasbeeh[index];
+      if (index >= 3) {
+        index = -1;
+      }
+      count = 0;
+    }
 
     setState(() {});
   }

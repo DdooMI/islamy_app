@@ -17,7 +17,7 @@ Future<void> main() async {
     ChangeNotifierProvider(
         create: (_) => ThemeProvider(isDarkTheme: prefs.getBool("isDark")!)),
     ChangeNotifierProvider(
-        create: (_) => LocalizationProvider(local: prefs.getString("local")!))
+        create: (_) => LocalizationProvider(locale: prefs.getString("local")!))
   ], child: const MyApp()));
 }
 
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale(Provider.of<LocalizationProvider>(context).appLocal),
+      locale: Locale(Provider.of<LocalizationProvider>(context).appLocal!),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: Provider.of<ThemeProvider>(context).appThemeMode,

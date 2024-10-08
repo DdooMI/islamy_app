@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamy_app/theme/image.dart';
 
 class Sebha extends StatefulWidget {
@@ -58,7 +59,7 @@ class _SebhaState extends State<Sebha> {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text("عدد التسبيحات",
+              Text(AppLocalizations.of(context)!.sebha,
                   style: Theme.of(context).textTheme.titleMedium),
               Container(
                   margin: EdgeInsets.all(20),

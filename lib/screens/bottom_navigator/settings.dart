@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islamy_app/provider/localization_provider.dart';
 import 'package:islamy_app/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +22,7 @@ class _SettingsState extends State<Settings> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Dark Mode",
+                AppLocalizations.of(context)!.darkmode,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               Switch(
@@ -39,7 +41,7 @@ class _SettingsState extends State<Settings> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Language",
+                AppLocalizations.of(context)!.language,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               Container(
@@ -51,22 +53,30 @@ class _SettingsState extends State<Settings> {
                       color: Theme.of(context).colorScheme.onSurface,
                     )),
                 child: DropdownButton<String>(
-                    items: const [
+                    items: [
                       DropdownMenuItem(
                         value: 'en',
-                        child: Text("English"),
+                        child: Text(AppLocalizations.of(context)!.english),
                       ),
                       DropdownMenuItem(
                         value: 'ar',
-                        child: Text("عربي"),
+                        child: Text(AppLocalizations.of(context)!.arabic),
                       )
                     ],
                     dropdownColor: Theme.of(context).colorScheme.surface,
                     borderRadius: BorderRadius.circular(20),
                     underline: Container(),
-                    value: 'en',
+                    value: Provider.of<LocalizationProvider>(context,
+                            listen: false)
+                        .appLocal,
                     style: Theme.of(context).textTheme.titleSmall,
-                    onChanged: (value) {}),
+                    onChanged: (value) {
+                      if (value != null) {
+                        Provider.of<LocalizationProvider>(context,
+                                listen: false)
+                            .changeLocal(value);
+                      }
+                    }),
               )
             ],
           )

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islamy_app/provider/localization_provider.dart';
 import 'package:islamy_app/provider/theme_provider.dart';
 import 'package:islamy_app/screens/bottom_navigator/bottom_navigator_bar.dart';
 import 'package:islamy_app/screens/bottom_navigator/tabs/hadeth_tab.dart';
@@ -8,8 +10,10 @@ import 'package:islamy_app/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-      create: (_) => ThemeProvider(), child: const MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => ThemeProvider()),
+    ChangeNotifierProvider(create: (_) => LocalizationProvider())
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -24,6 +28,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: Locale(Provider.of<LocalizationProvider>(context).appLocal),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: Provider.of<ThemeProvider>(context).appThemeMode,

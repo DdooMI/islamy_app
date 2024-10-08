@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamy_app/theme/image.dart';
 
 class RadioQuraan extends StatelessWidget {
@@ -15,7 +16,7 @@ class RadioQuraan extends StatelessWidget {
         ),
         Column(
           children: [
-            Text("أذاعة القرآن الكريم",
+            Text(AppLocalizations.of(context)!.radioQuran,
                 style: Theme.of(context).textTheme.titleMedium),
             Container(
               margin: const EdgeInsets.only(top: 20),

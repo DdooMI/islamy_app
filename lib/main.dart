@@ -8,11 +8,16 @@ import 'package:islamy_app/screens/bottom_navigator/tabs/quran_tab.dart';
 import 'package:islamy_app/screens/splash/splash_screen.dart';
 import 'package:islamy_app/theme/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => ThemeProvider()),
-    ChangeNotifierProvider(create: (_) => LocalizationProvider())
+    ChangeNotifierProvider(
+        create: (_) => ThemeProvider(isDarkTheme: prefs.getBool("isDark")!)),
+    ChangeNotifierProvider(
+        create: (_) => LocalizationProvider(local: prefs.getString("local")!))
   ], child: const MyApp()));
 }
 

@@ -14,10 +14,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-        create: (_) => ThemeProvider(isDarkTheme: prefs.getBool("isDark")!)),
-    ChangeNotifierProvider(
-        create: (_) => LocalizationProvider(locale: prefs.getString("local")!))
+    ChangeNotifierProvider<ThemeProvider>(
+        create: (_) => ThemeProvider(dark: prefs.getBool("isDark")?? false)),
+    ChangeNotifierProvider<LocalizationProvider>(
+        create: (_) => LocalizationProvider(locale: prefs.getString("local")?? "en"))
   ], child: const MyApp()));
 }
 
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale(Provider.of<LocalizationProvider>(context).appLocal!),
+      locale: Locale(Provider.of<LocalizationProvider>(context).appLocal??"en"),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: Provider.of<ThemeProvider>(context).appThemeMode,

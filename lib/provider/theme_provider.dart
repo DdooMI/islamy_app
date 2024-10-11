@@ -16,8 +16,7 @@ class ThemeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  ThemeProvider({required bool isDarkTheme}) {
-    appThemeMode = ThemeMode.light;
-    appThemeMode = isDarkTheme ? ThemeMode.dark : ThemeMode.light;
+  ThemeProvider({required bool dark}) {
+    appThemeMode = dark ? ThemeMode.dark : ThemeMode.light;
   }
 }

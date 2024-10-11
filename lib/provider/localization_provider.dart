@@ -12,11 +12,11 @@ class LocalizationProvider with ChangeNotifier {
     } else {
       prefs.setString("local", "ar");
     }
+    appLocal = prefs.getString("local")!;
     notifyListeners();
   }
 
   LocalizationProvider({required String locale}) {
-    appLocal = "en";
     appLocal = locale;
   }
 }

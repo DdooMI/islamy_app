@@ -30,7 +30,7 @@ class _SebhaState extends State<Sebha> {
             padding: const EdgeInsets.only(top: 20),
             child: AnimatedRotation(
               turns: rotate,
-              duration: const Duration(milliseconds: 100),
+              duration: const Duration(milliseconds: 500),
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [

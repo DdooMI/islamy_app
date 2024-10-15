@@ -40,12 +40,11 @@ class _HadethState extends State<Hadeth> {
                     decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(20)),
-                    child: ListTile(
-                      title: Text(
-                        hadethModelList[index].name,
-                        style: Theme.of(context).textTheme.titleMedium,
-                        textAlign: TextAlign.center,
-                      ),
+                    child: Text(
+                      hadethModelList[index].name,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onTertiary),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),

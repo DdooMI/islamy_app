@@ -23,7 +23,7 @@ class _SettingsState extends State<Settings> {
             children: [
               Text(
                 AppLocalizations.of(context)!.darkmode,
-                style: Theme.of(context).textTheme.titleMedium,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               Switch(
                   inactiveTrackColor: Theme.of(context).colorScheme.onSecondary,
@@ -42,10 +42,10 @@ class _SettingsState extends State<Settings> {
             children: [
               Text(
                 AppLocalizations.of(context)!.language,
-                style: Theme.of(context).textTheme.titleMedium,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(

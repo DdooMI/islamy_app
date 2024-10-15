@@ -85,7 +85,7 @@ class _SebhaState extends State<Sebha> {
                       )),
                   SebhaButton(
                       onPressed: () {
-                        Sebha();
+                        sebhaRotate();
                       },
                       child: Text(
                         sebhaName,
@@ -122,7 +122,7 @@ class _SebhaState extends State<Sebha> {
     );
   }
 
-  Sebha() {
+  sebhaRotate() {
     rotate += 1 / 30;
     count++;
     setState(() {});

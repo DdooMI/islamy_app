@@ -16,7 +16,8 @@ class AppTheme {
           error: Colors.red,
           onError: Colors.white,
           surface: AppColor.mainLightColor,
-          onSurface: AppColor.mainLightColor),
+          onSurface: AppColor.mainLightColor,
+          onTertiary: AppColor.black),
       textTheme: TextTheme(
           bodyMedium: TextStyle(
               fontSize: 15, fontWeight: FontWeight.w400, color: AppColor.black),
@@ -50,8 +51,9 @@ class AppTheme {
           onSecondary: AppColor.gold,
           error: Colors.red,
           onError: Colors.black,
-          surface: Color(0xFFBC9B15),
-          onSurface: AppColor.gold),
+          surface: const Color(0xFFBC9B15),
+          onSurface: AppColor.gold,
+          onTertiary: AppColor.gold),
       textTheme: const TextTheme(
           bodyMedium: TextStyle(
               fontSize: 15, fontWeight: FontWeight.w400, color: Colors.white),

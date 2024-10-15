@@ -280,21 +280,45 @@ class _QuraanState extends State<Quraan> {
                           child: ListTile(
                             leading: Text(
                               "${index + 1}",
-                              style: Theme.of(context).textTheme.titleMedium,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiary),
                             ),
                             title: Text(
                               "سورة ${suras[index]}",
-                              style: Theme.of(context).textTheme.titleMedium,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiary),
                               textAlign: TextAlign.center,
                             ),
                             subtitle: Text(
                               " عدد الآيات: ${virsesCount[index].toString()}",
-                              style: Theme.of(context).textTheme.bodyMedium,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiary),
                               textAlign: TextAlign.center,
                             ),
                             trailing: Text(
                               suraType[index],
-                              style: Theme.of(context).textTheme.titleSmall,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiary),
                             ),
                           ),
                         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamy_app/screens/bottom_navigator/hadeth.dart';
 import 'package:islamy_app/theme/image.dart';
 
@@ -29,7 +30,7 @@ class HadethTab extends StatelessWidget {
                 Icons.arrow_back,
                 color: Theme.of(context).colorScheme.secondary,
               )),
-          title: const Text('islamy'),
+          title: Text(AppLocalizations.of(context)!.islamy),
         ),
         body: Container(
           padding: EdgeInsets.symmetric(

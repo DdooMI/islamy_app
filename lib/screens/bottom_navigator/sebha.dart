@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islamy_app/screens/widget/sebha_button.dart';
 import 'package:islamy_app/theme/image.dart';
 
 class Sebha extends StatefulWidget {
@@ -16,11 +17,12 @@ class _SebhaState extends State<Sebha> {
     "سبحان الله",
     "الحمد لله",
     "الله اكبر",
-    "استغفر الله"
+    "استغفر الله",
+    "لا اله الا الله"
   ];
-  String sebhaName = "سبحان الله";
   int count = 0;
   int index = 0;
+  String sebhaName = "سبحان الله";
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -62,25 +64,66 @@ class _SebhaState extends State<Sebha> {
               Text(AppLocalizations.of(context)!.sebha,
                   style: Theme.of(context).textTheme.titleMedium),
               Container(
-                  margin: EdgeInsets.all(20),
-                  padding: EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primary,
                       borderRadius: BorderRadius.circular(15)),
                   child: Text(count.toString(),
                       style: Theme.of(context).textTheme.titleMedium)),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.onSurface),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SebhaButton(
+                      onPressed: () {
+                        if (index >= 0 && index <= 4) {
+                          if (index == 0) return;
+                          index--;
+                          sebhaName = tasbeeh[index];
+                        }
+                        setState(() {});
+                      },
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: Theme.of(context).colorScheme.onError,
+                      )),
+                  SebhaButton(
+                      onPressed: () {
+                        changeSebha();
+                      },
+                      child: Text(
+                        sebhaName,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(
+                                color: Theme.of(context).colorScheme.onError),
+                      )),
+                  SebhaButton(
+                      onPressed: () {
+                        if (index >= 0 && index <= 4) {
+                          if (index == 4) return;
+                          index++;
+                          sebhaName = tasbeeh[index];
+                        }
+                        setState(() {});
+                      },
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: Theme.of(context).colorScheme.onError,
+                      ))
+                ],
+              ),
+              SebhaButton(
                   onPressed: () {
-                    changeSebha();
+                    rotate = 0;
+                    count = 0;
+                    setState(() {});
                   },
-                  child: Text(
-                    sebhaName,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Theme.of(context).colorScheme.onError),
+                  child: Icon(
+                    Icons.restart_alt,
+                    size: 35,
+                    color: Theme.of(context).colorScheme.onError,
                   ))
             ],
           ),
@@ -92,16 +135,6 @@ class _SebhaState extends State<Sebha> {
   changeSebha() {
     rotate += 1 / 33;
     count++;
-
-    if (count > 33) {
-      index++;
-      sebhaName = tasbeeh[index];
-      if (index >= 3) {
-        index = -1;
-      }
-      count = 0;
-    }
-
     setState(() {});
   }
 }

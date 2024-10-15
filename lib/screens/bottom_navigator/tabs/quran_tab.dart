@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamy_app/screens/bottom_navigator/quraan.dart';
 import 'package:islamy_app/theme/image.dart';
 
@@ -39,7 +40,7 @@ class _QuranTabState extends State<QuranTab> {
                 Icons.arrow_back,
                 color: Theme.of(context).colorScheme.secondary,
               )),
-          title: const Text('islamy'),
+          title: Text(AppLocalizations.of(context)!.islamy),
         ),
         body: Container(
           padding: EdgeInsets.symmetric(
@@ -61,27 +62,40 @@ class _QuranTabState extends State<QuranTab> {
                 indent: MediaQuery.of(context).size.width * .09,
                 endIndent: MediaQuery.of(context).size.width * .09,
               ),
-              virses.isEmpty
-                  ? const Expanded(
-                      child: Center(child: CircularProgressIndicator()))
-                  : Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: MediaQuery.of(context).size.width * .04,
-                            vertical: MediaQuery.of(context).size.height * .01),
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            return Text(
-                              virses[index],
-                              style: Theme.of(context).textTheme.titleSmall,
-                              textDirection: TextDirection.rtl,
-                              textAlign: TextAlign.center,
-                            );
-                          },
-                          itemCount: virses.length,
-                        ),
-                      ),
-                    )
+              Expanded(
+                child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * .04,
+                        vertical: MediaQuery.of(context).size.height * .01),
+                    child: ListView(
+                      children: [
+                        quranModel.index > 0
+                            ? Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Text(
+                                    "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
+                                    style:
+                                        Theme.of(context).textTheme.titleSmall,
+                                  ),
+                                ),
+                              )
+                            : Container(),
+                        RichText(
+                            textDirection: TextDirection.rtl,
+                            text: TextSpan(
+                                style: Theme.of(context).textTheme.titleSmall,
+                                children: virses
+                                    .map((virse) => TextSpan(children: [
+                                          TextSpan(text: virse),
+                                          TextSpan(
+                                              text:
+                                                  '(${virses.indexOf(virse) + 1}) ')
+                                        ]))
+                                    .toList()))
+                      ],
+                    )),
+              ),
             ],
           ),
         ),

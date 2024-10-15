@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamy_app/screens/bottom_navigator/hadeth.dart';
 import 'package:islamy_app/screens/bottom_navigator/quraan.dart';
 import 'package:islamy_app/screens/bottom_navigator/radio.dart';
@@ -27,10 +28,14 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(AppImages.background), fit: BoxFit.fill)),
+                image: AssetImage(
+                    Theme.of(context).colorScheme.brightness == Brightness.light
+                        ? AppImages.background
+                        : AppImages.backgroundDark),
+                fit: BoxFit.fill)),
         child: Scaffold(
           appBar: AppBar(
-            title: const Text("islamy"),
+            title: Text(AppLocalizations.of(context)!.islamy),
           ),
           bottomNavigationBar: BottomNavigationBar(
               currentIndex: selectedItem,
@@ -45,31 +50,31 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
                       AssetImage(AppImages.quranIcn),
                       size: 40,
                     ),
-                    label: "Quran"),
+                    label: AppLocalizations.of(context)!.quran),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
                       AssetImage(AppImages.quran),
                       size: 40,
                     ),
-                    label: "Hadeth"),
+                    label: AppLocalizations.of(context)!.hadeth),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
                       AssetImage(AppImages.sebhaIcn),
                       size: 40,
                     ),
-                    label: "Tasbeeh"),
+                    label: AppLocalizations.of(context)!.tasbeeh),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
                       AssetImage(AppImages.radioIcn),
                       size: 40,
                     ),
-                    label: "Radio"),
-                const BottomNavigationBarItem(
-                    icon: Icon(
+                    label: AppLocalizations.of(context)!.radio),
+                BottomNavigationBarItem(
+                    icon: const Icon(
                       Icons.settings,
                       size: 40,
                     ),
-                    label: "Settings"),
+                    label: AppLocalizations.of(context)!.settings),
               ]),
           body: screens[selectedItem],
         ));

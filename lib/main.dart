@@ -1,25 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islamy_app/provider/localization_provider.dart';
+import 'package:islamy_app/provider/theme_provider.dart';
 import 'package:islamy_app/screens/bottom_navigator/bottom_navigator_bar.dart';
+import 'package:islamy_app/screens/bottom_navigator/tabs/hadeth_tab.dart';
+import 'package:islamy_app/screens/bottom_navigator/tabs/quran_tab.dart';
 import 'package:islamy_app/screens/splash/splash_screen.dart';
 import 'package:islamy_app/theme/theme.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<ThemeProvider>(
+        create: (_) => ThemeProvider(dark: prefs.getBool("isDark") ?? false)),
+    ChangeNotifierProvider<LocalizationProvider>(
+        create: (_) =>
+            LocalizationProvider(locale: prefs.getString("local") ?? "en"))
+  ], child: const MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale:
+          Locale(Provider.of<LocalizationProvider>(context).appLocal ?? "en"),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: Provider.of<ThemeProvider>(context).appThemeMode,
       routes: {
         SplashScreen.routeName: (_) => const SplashScreen(),
-        BottomNavigatorBar.routeName: (_) => const BottomNavigatorBar()
+        BottomNavigatorBar.routeName: (_) => const BottomNavigatorBar(),
+        QuranTab.routeName: (_) => const QuranTab(),
+        HadethTab.routeName: (_) => const HadethTab()
       },
       home: const SplashScreen(),
     );

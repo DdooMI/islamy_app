@@ -76,12 +76,8 @@ class _SebhaState extends State<Sebha> {
                 children: [
                   SebhaButton(
                       onPressed: () {
-                        if (index >= 0 && index <= 4) {
-                          if (index == 0) return;
-                          index--;
-                          sebhaName = tasbeeh[index];
-                        }
-                        setState(() {});
+                        changeTasbeehDecrease();
+                        resetSebha();
                       },
                       child: Icon(
                         Icons.arrow_back,
@@ -89,7 +85,7 @@ class _SebhaState extends State<Sebha> {
                       )),
                   SebhaButton(
                       onPressed: () {
-                        changeSebha();
+                        Sebha();
                       },
                       child: Text(
                         sebhaName,
@@ -101,12 +97,8 @@ class _SebhaState extends State<Sebha> {
                       )),
                   SebhaButton(
                       onPressed: () {
-                        if (index >= 0 && index <= 4) {
-                          if (index == 4) return;
-                          index++;
-                          sebhaName = tasbeeh[index];
-                        }
-                        setState(() {});
+                        changeTasbeehIncrease();
+                        resetSebha();
                       },
                       child: Icon(
                         Icons.arrow_forward,
@@ -116,9 +108,7 @@ class _SebhaState extends State<Sebha> {
               ),
               SebhaButton(
                   onPressed: () {
-                    rotate = 0;
-                    count = 0;
-                    setState(() {});
+                    resetSebha();
                   },
                   child: Icon(
                     Icons.restart_alt,
@@ -132,9 +122,31 @@ class _SebhaState extends State<Sebha> {
     );
   }
 
-  changeSebha() {
-    rotate += 1 / 33;
+  Sebha() {
+    rotate += 1 / 30;
     count++;
+    setState(() {});
+  }
+
+  changeTasbeehIncrease() {
+    if (index >= 0 && index <= 4) {
+      if (index == 4) return;
+      index++;
+      sebhaName = tasbeeh[index];
+    }
+  }
+
+  changeTasbeehDecrease() {
+    if (index >= 0 && index <= 4) {
+      if (index == 0) return;
+      index--;
+      sebhaName = tasbeeh[index];
+    }
+  }
+
+  resetSebha() {
+    rotate = 0;
+    count = 0;
     setState(() {});
   }
 }

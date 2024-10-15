@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SebhaButton extends StatelessWidget {
   SebhaButton({required this.onPressed, required this.child, super.key});
   void Function()? onPressed;
